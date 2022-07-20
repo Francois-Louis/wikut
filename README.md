@@ -17,7 +17,9 @@ Wikut is a social network about cutlery
 ```bash
 composer install
 yarn install
-yarn encore dev-server
+yarn build
 docker-compose up -d
 symfony server -d
 ```
+
+"yarn encore dev-server"
