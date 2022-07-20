@@ -27,8 +27,13 @@ class Picture
     /**
      * @ORM\Column(type="smallint", options={"default": 0})
      */
-     */
     private $place;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="pictures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $project;
 
     public function getId(): ?int
     {
@@ -55,6 +60,18 @@ class Picture
     public function setPlace(int $place): self
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
 
         return $this;
     }

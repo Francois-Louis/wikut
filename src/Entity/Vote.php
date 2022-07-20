@@ -29,6 +29,18 @@ class Vote
      */
     private $voted_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="votes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $project;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="votes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +66,30 @@ class Vote
     public function setVotedAt(\DateTimeImmutable $voted_at): self
     {
         $this->voted_at = $voted_at;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
