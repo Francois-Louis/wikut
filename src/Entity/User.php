@@ -136,6 +136,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $followers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Rank::class, inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $rank;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -539,6 +545,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->followers->removeElement($follower)) {
             $follower->removeFollowing($this);
         }
+
+        return $this;
+    }
+
+    public function getRank(): ?Rank
+    {
+        return $this->rank;
+    }
+
+    public function setRank(?Rank $rank): self
+    {
+        $this->rank = $rank;
 
         return $this;
     }
