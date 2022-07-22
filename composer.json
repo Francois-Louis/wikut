@@ -91,7 +91,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "5.4.*"
         }
     },
@@ -99,6 +99,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "fakerphp/faker": "^1.20",
         "phpunit/phpunit": "^9.5",
+        "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/browser-kit": "5.4.*",
         "symfony/css-selector": "5.4.*",
         "symfony/debug-bundle": "5.4.*",
