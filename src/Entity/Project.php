@@ -68,6 +68,12 @@ class Project
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -207,6 +213,18 @@ class Project
                 $comment->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
