@@ -108,6 +108,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $rank;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="users")
+     */
+    private $status;
+
     public function __construct()
     {
         $this->following = new ArrayCollection();
@@ -370,6 +375,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRank(?Rank $rank): self
     {
         $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
