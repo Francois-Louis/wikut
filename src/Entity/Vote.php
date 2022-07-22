@@ -24,7 +24,7 @@ class Vote
     private $id;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="smallint", options={"default": 0})
      */
     private $rate;
 
