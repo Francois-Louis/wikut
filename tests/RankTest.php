@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\Rank;
 use PHPUnit\Framework\TestCase;
 
-class RankUnitTest extends TestCase
+class RankTest extends TestCase
 {
     public function testRankTrue()
     {

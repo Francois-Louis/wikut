@@ -5,7 +5,7 @@ namespace App\Tests;
 use App\Entity\Status;
 use PHPUnit\Framework\TestCase;
 
-class StatusUnitTest extends TestCase
+class StatusTest extends TestCase
 {
     public function testStatusTrue()
     {
