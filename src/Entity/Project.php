@@ -79,11 +79,29 @@ class Project
      */
     private $pictures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Blade::class, inversedBy="Projects")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $blade;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Handle::class, mappedBy="projects")
+     */
+    private $handles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Style::class, mappedBy="projects")
+     */
+    private $styles;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->handles = new ArrayCollection();
+        $this->styles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -260,6 +278,72 @@ class Project
             if ($picture->getProject() === $this) {
                 $picture->setProject(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getBlade(): ?Blade
+    {
+        return $this->blade;
+    }
+
+    public function setBlade(?Blade $blade): self
+    {
+        $this->blade = $blade;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Handle>
+     */
+    public function getHandles(): Collection
+    {
+        return $this->handles;
+    }
+
+    public function addHandle(Handle $handle): self
+    {
+        if (!$this->handles->contains($handle)) {
+            $this->handles[] = $handle;
+            $handle->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHandle(Handle $handle): self
+    {
+        if ($this->handles->removeElement($handle)) {
+            $handle->removeProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Style>
+     */
+    public function getStyles(): Collection
+    {
+        return $this->styles;
+    }
+
+    public function addStyle(Style $style): self
+    {
+        if (!$this->styles->contains($style)) {
+            $this->styles[] = $style;
+            $style->addProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStyle(Style $style): self
+    {
+        if ($this->styles->removeElement($style)) {
+            $style->removeProject($this);
         }
 
         return $this;
