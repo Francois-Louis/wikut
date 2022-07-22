@@ -84,7 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $website;
 
     /**
-     * @ORM\Column(type="smallint", options={"default":0})
+     * @ORM\Column(type="smallint", options={"default":0}, nullable=true)
      */
     private $score;
 
@@ -130,7 +130,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $city;
 
