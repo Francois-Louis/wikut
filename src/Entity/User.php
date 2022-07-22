@@ -118,11 +118,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $projects;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Vote::class, mappedBy="user")
+     */
+    private $votes;
+
     public function __construct()
     {
         $this->following = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->projects = new ArrayCollection();
+        $this->votes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -421,6 +427,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($project->getUser() === $this) {
                 $project->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vote>
+     */
+    public function getVotes(): Collection
+    {
+        return $this->votes;
+    }
+
+    public function addVote(Vote $vote): self
+    {
+        if (!$this->votes->contains($vote)) {
+            $this->votes[] = $vote;
+            $vote->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVote(Vote $vote): self
+    {
+        if ($this->votes->removeElement($vote)) {
+            // set the owning side to null (unless already changed)
+            if ($vote->getUser() === $this) {
+                $vote->setUser(null);
             }
         }
 
