@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Status;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class StatusCrudController extends AbstractCrudController
@@ -22,4 +24,11 @@ class StatusCrudController extends AbstractCrudController
         ];
     }
     */
+
+    // désactive l'action show
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)
+            ->disable(Action::DETAIL);
+    }
 }
