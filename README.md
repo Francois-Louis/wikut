@@ -16,5 +16,7 @@ Wikut is a social network about cutlery
 
 ```bash
 docker-compose up -d
-symfony server -d
+yarn install
+yarn build
+symfony run -d yarn dev --watch
 ```
