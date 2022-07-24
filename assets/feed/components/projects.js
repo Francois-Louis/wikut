@@ -1,33 +1,35 @@
 import React, {useEffect} from 'react';
-import './projects.scss';
 import {useDispatch, useSelector} from "react-redux";
+import {fetchProjectsToDisplay} from "../actions/projectsActions";
+import Loader from "./Loader/loader";
 
 
-const  Projects = () => {
+const  ProjectsList = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchLastProjects());
+    dispatch(fetchProjectsToDisplay());
   }, []);
 
-  const projectsToDisplay = useSelector((state) => state.Feeder.projectList)
+  const projects = useSelector((state) => state.Projects.projectstodisplay);
 
-  if (Array.isArray(projectsToDisplay) && projectsToDisplay.length > 0) {
+  if (Array.isArray(projects) && projects.length > 0) {
     return (
       <div>
-        {projectsToDisplay.map((project, index) => (
+        {projects.map((project, index) => (
           <div key={index} className="project">{project}</div>
         ))}
       </div>
     );
   }
-  else if (projectsToDisplay === 'void') {
+  else if (projects === 'void') {
    return(
      <div>
        <h1>Nothing</h1>
      </div>
    );
   }
-  else if (projectsToDisplay === 'error') {
+  else if (projects === 'error') {
     return(
       <div>
         <h1>Error</h1>
@@ -44,5 +46,5 @@ const  Projects = () => {
 };
 
 
-export default Projects;
+export default ProjectsList;
 
