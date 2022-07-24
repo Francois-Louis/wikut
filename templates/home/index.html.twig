@@ -9,11 +9,4 @@
                 <h1>Hello HomeController!</h1>
             </div>
         </div>
-        {%  if is_granted('ROLE_ADMIN') %}
-            <div class=\"row\">
-                <div class=\"col-md-12\">
-                    <a href=\"{{ path('admin_index') }}\" class="btn">Admin</a>
-                </div>
-            </div>
-        {% endif %}
     </div>{% endblock %}
