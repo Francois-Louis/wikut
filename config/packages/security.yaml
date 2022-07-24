@@ -1,5 +1,8 @@
 security:
     enable_authenticator_manager: true
+
+    hide_user_not_found: true
+
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -17,6 +20,19 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email
+                password_parameter: password
+                enable_csrf: true
+            logout: true
+            remember_me:
+                secret: '%kernel.secret%'
+                # force le stockage de la session en cookie
+                always_remember_me: true
+                # vérifie que le mot de passe du cookie correspond bien au mot de passe en base de données
+                signature_properties: [password]
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

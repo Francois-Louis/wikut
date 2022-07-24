@@ -1,0 +1,8 @@
+<header>
+    <h2>Ici une navbar</h2>
+    {%  if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Connexion</a>
+    {% endif %}
+</header>
