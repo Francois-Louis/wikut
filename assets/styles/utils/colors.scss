@@ -1,0 +1,121 @@
+/*
+*  App backgrounds and subtitle components backgrounds
+*  1 or 2 as wished
+* - Main app bg
+* - Striped table bg
+* - Code block bg
+* - Card bg
+* - Sidebar bg
+* - Canvas area bg
+ */
+
+$main2: #CEEFFD;
+$info2: #E2E6E9;
+$cta2: #FDE7CE;
+$success2: #D0FBF0;
+$warning2: #FED9CD;
+$danger2: #F9D2D9;
+
+
+/*
+*  Component backgrounds
+* - 3 for normal state
+* - 4 for hover state
+* - 5 for pressed or selected states
+ */
+
+$main3: #ABE3FC;
+$info3: #C4CBD2;
+$cta3: #FCD6AB;
+$success3: #B1F8E7;
+$warning3: #FDC6B5;
+$danger3: #F5B5C0;
+
+$main4: #89D8FA;
+$info4: #A6B1BB;
+$cta4: #FAC589;
+$success4: #91F5DD;
+$warning4: #FDB49D;
+$danger4: #F198A7;
+
+$main5: #66CCF9;
+$info5: #8896A4;
+$cta5: #F9B466;
+$success5: #71F2D3;
+$warning5: #FCA184;
+$danger5: #EC7B8E;
+
+/*
+*  Borders
+* - 6 for subtitle borders on components not interactive (sidebars, headers, cards, alerts and separators)
+* - 7 for subtitle borders on components interactive (buttons, inputs, selects, tables, etc) and focus
+* - 8 for hover state of interactive components
+ */
+
+$main6: #44C1F7;
+$info6: #6B7C8C;
+$cta6: #F7A444;
+$success6: #51EFC9;
+$warning6: #FC8F6C;
+$danger6: #E85E75;
+
+$main7: #21B5F6;
+$info7: #54616E;
+$cta7: #F69321;
+$success7: #32ECBF;
+$warning7: #FB7C54;
+$danger7: #E4415C;
+
+$main8: #09A6EA;
+$info8: #3D4750;
+$cta8: #EA8109;
+$success8: #15E7B4;
+$warning8: #FB6A3B;
+$danger8: #E02443;
+
+/*
+*  Solid backgrounds
+*  9 is the base color
+* - App bg
+* - Header bg
+* - Components bg
+* - Logos
+* - Overlays
+* - colored shadows
+* - accent borders
+*  10 is for their hover state
+ */
+
+$main9: #088DC7;
+$info9: #262C32;
+$cta9: #C76E08;
+$success9: #12C79B;
+$warning9: #FA5723;
+$danger9: #C71C38;
+
+$main10: #066189;
+$info10: #1B1F22;
+$cta10: #894C06;
+$success10: #0C896B;
+$warning10: #D83805;
+$danger10: #891326;
+
+/*
+*  Text
+* - 11 for low contrast
+* - 12 for high contrast
+ */
+
+$main11: #055172;
+$info11: #161A1C;
+$cta11: #723F05;
+$success11: #0A7259;
+$warning11: #BE3104;
+$danger11: #5F0D1B;
+
+$main12: #03384F;
+$info12: #0F1213;
+$cta12: #4F2B03;
+$success12: #074F3D;
+$warning12: #932604;
+$danger12: #4F0B16;

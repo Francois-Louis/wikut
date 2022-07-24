@@ -1,0 +1,9 @@
+@import "base/reset.scss";
+@import "utils/fonts";
+@import "utils/colors";
+@import "layouts/header";
+@import "layouts/footer";
+
+* {
+  box-sizing: border-box;
+}
