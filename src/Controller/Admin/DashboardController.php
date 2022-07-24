@@ -31,8 +31,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/admin", name="app_admin")
-     * @IsGranted("ROLE_ADMIN")
+     * @Route("/ruler", name="app_admin")
+     * @IsGranted("ROLE_MODO")
      */
     public function index(): Response
     {
@@ -58,22 +58,41 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-dashboard');
+        Yield MenuItem::section('Projects');
         yield MenuItem::linkToCrud('Project', 'fa fa-knife', Project::class);
         yield MenuItem::linkToCrud('Picture', 'fa fa-images', Picture::class);
         yield MenuItem::LinkToCrud('Comment', 'fa fa-comments', Comment::class);
-        yield MenuItem::LinkToCrud('Vote', 'fa fa-star', Vote::class);
-        yield MenuItem::LinkToCrud('Category', 'fa fa-list', Category::class);
+        yield MenuItem::LinkToCrud('Vote', 'fa fa-star', Vote::class)
+            ->setPermission('ROLE_ADMIN');
+        Yield MenuItem::section('Types');
+        yield MenuItem::LinkToCrud('Category', 'fa fa-list', Category::class)
+            ->setPermission('ROLE_ADMIN');
         yield MenuItem::LinkToCrud('Style', 'fa fa-list', Style::class);
         yield MenuItem::LinkToCrud('Blade', 'fa fa-list', Blade::class);
         yield MenuItem::LinkToCrud('Handle', 'fa fa-list', Handle::class);
+        Yield MenuItem::section('Users');
         yield MenuItem::LinkToCrud('User', 'fa fa-users', User::class);
-        yield MenuItem::LinkToCrud('Status', 'fa fa-list', Status::class);
-        yield MenuItem::LinkToCrud('Rank', 'fa fa-ranking-star', Rank::class);
-        yield MenuItem::linkToCrud('Country', 'fas fa-globe', Country::class);
-        yield MenuItem::LinkToCrud('City', 'fa fa-city', City::class);
+        yield MenuItem::LinkToCrud('Status', 'fa fa-list', Status::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::LinkToCrud('Rank', 'fa fa-ranking-star', Rank::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::linkToCrud('Country', 'fas fa-globe', Country::class)
+            ->setPermission('ROLE_ADMIN');
+        yield MenuItem::LinkToCrud('City', 'fa fa-city', City::class)
+            ->setPermission('ROLE_ADMIN');
+        Yield MenuItem::section('');
         yield MenuItem::LinkToUrl('Home', 'fa fa-home', $this->generateUrl('app_home'));
+        Yield MenuItem::section('');
         yield MenuItem::linkToRoute('Logout', 'fa fa-sign-out', 'app_logout');
     }
+
+    public function configureCrud(): Crud
+    {
+        return parent::configureCrud()
+            ->setDefaultSort(['createdAt' => 'DESC'])
+            ->showEntityActionsInlined();
+    }
+
 
     public function configureActions(): Actions
     {

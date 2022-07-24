@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -34,19 +36,28 @@ class UserCrudController extends AbstractCrudController
             ->setUploadDir('public//img/avatar/')
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');*/
         yield DateField::new('createdAt')
-            ->hideOnForm();
+            ->onlyOnDetail();
         $roles = [
             'ROLE_ADMIN' => 'Admin',
             'ROLE_USER' => 'User',
         ];
-        yield ArrayField::new('roles');
+        yield ArrayField::new('roles')
+            ->hideOnIndex();
             // dispo symfo 6
             //->setChoices(array_combine($roles, $roles));
             //->allowMultipleChoices()
             //->renderExpanded();
         yield AssociationField::new('projects')
             ->setFormTypeOption('by_reference', false);
-
     }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return parent::configureActions($actions)
+            ->setPermission(Action::NEW, 'ROLE_ADMIN')
+            ->setPermission(Action::DELETE, 'ROLE_ADMIN')
+            ->setPermission(Action::BATCH_DELETE, 'ROLE_ADMIN');
+    }
+
 
 }
