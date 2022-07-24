@@ -1,0 +1,29 @@
+@import "base/reset.scss";
+@import "utils/fonts";
+@import "utils/colors";
+@import "layouts/header";
+@import "layouts/footer";
+@import "components/loader";
+@import "components/projects";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $info2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: $main9;
+}
