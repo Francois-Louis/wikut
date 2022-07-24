@@ -5,4 +5,11 @@
     {% else %}
         <a href="{{ path('app_login') }}">Connexion</a>
     {% endif %}
+    {%  if is_granted('ROLE_ADMIN') %}
+        <div class=\"row\">
+            <div class=\"col-md-12\">
+                <a href=\"{{ path('admin_index') }}\" class="btn">Admin</a>
+            </div>
+        </div>
+    {% endif %}
 </header>

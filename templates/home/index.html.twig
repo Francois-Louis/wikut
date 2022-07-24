@@ -3,17 +3,8 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <div class=\"container\">
-        <div class=\"row\">
-            <div class=\"col-md-12\">
-                <h1>Hello HomeController!</h1>
-            </div>
-        </div>
-        {%  if is_granted('ROLE_ADMIN') %}
-            <div class=\"row\">
-                <div class=\"col-md-12\">
-                    <a href=\"{{ path('admin_index') }}\" class="btn">Admin</a>
-                </div>
-            </div>
-        {% endif %}
-    </div>{% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('feed') }}
+    {% endblock %}
+    <div id="feed"></div>
+{% endblock %}
