@@ -1,5 +1,8 @@
 <header>
     <h2>Ici une navbar</h2>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_admin') }}">Admin</a>
+    {% endif %}
     {%  if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <a href="{{ path('app_logout') }}">Déconnexion</a>
     {% else %}
