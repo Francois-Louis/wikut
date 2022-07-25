@@ -21,7 +21,9 @@ const  ProjectsList = () => {
   if (projects.length > 0) {
     return (
       <div>
-        <h1>Projects</h1>
+        {projects.map((project, index) => (
+          <div key={index} className="project">{project.name}</div>
+        ))}
       </div>
     );
   }

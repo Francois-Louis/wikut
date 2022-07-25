@@ -1,0 +1,22 @@
+.footer {
+  background-color: $main9;
+  height: 48px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 12px;
+  border-top: $main6 1px solid;
+
+  &__links {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__link {
+    font-size: 24px;
+
+    &--color {
+      color: $info12;
+    }
+  }
+}

@@ -13,7 +13,7 @@ const projectsReducer = (state = initialSate, action = {}) => {
     case SAVE_FETCHED_PROJECTS:
       return {
         ...state,
-        projectstodisplay: JSON.stringify(action.payload),
+        projectstodisplay: action.payload,
       };
     case SWITCH_LOADING:
       return {

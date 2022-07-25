@@ -1,7 +1,7 @@
 @import "base/reset.scss";
 @import "utils/fonts";
 @import "utils/colors";
-@import "layouts/header";
+@import "layouts/navbar";
 @import "layouts/footer";
 @import "components/loader";
 @import "components/projects";
@@ -14,8 +14,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   background-color: $info2;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: $info11;
+  margin-bottom: 24px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,6 +28,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: $main9;
+  font-size: 3em;
+  color: $main11;
+}
+
+h2 {
+  font-size: 2.5em;
+  color: $main11;
+}
+
+h3 {
+  font-size: 2em;
+  color: $main11;
+}
+
+h4 {
+  font-size: 1.5em;
+  color: $main11;
+}
+
+h5 {
+  font-size: 1.2em;
+  color: $main11;
+}
+
+.ea {
+  display: block;
+}
+
+.desk {
+  display: none;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 1024px) {
+  .desk {
+    display: block;
+  }
+  .mob {
+    display: none;
+  }
 }

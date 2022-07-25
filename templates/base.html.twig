@@ -2,12 +2,15 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="shortcut icon" href="{{ absolute_url('favicon.png') }}">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
+
+    <link href="{{ absolute_url('fontawesome/css/all.css') }}" rel="stylesheet">
 
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}

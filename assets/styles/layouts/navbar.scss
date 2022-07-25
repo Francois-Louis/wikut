@@ -1,0 +1,23 @@
+.navbar {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  padding: 12px ;
+
+    &__logo {
+      height: 36px;
+      width: 36px;
+      align-self: center;
+    }
+
+    &__brand {
+      align-self: center;
+    }
+
+    &__nav {
+      display: flex;
+      margin-left: auto;
+      align-self: center;
+    }
+}
