@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -26,6 +27,7 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_projects_list")
      */
     private $name;
 

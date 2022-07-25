@@ -12,34 +12,30 @@ const  ProjectsList = () => {
   }, []);
 
   const projects = useSelector((state) => state.Projects.projectstodisplay);
+  const loading = useSelector((state) => state.Projects.loading);
 
-  if (Array.isArray(projects) && projects.length > 0) {
+  console.log(projects)
+  console.log(projects[0])
+  console.log(projects.length)
+
+  if (projects.length > 0) {
     return (
       <div>
-        {projects.map((project, index) => (
-          <div key={index} className="project">{project}</div>
-        ))}
+        <h1>Projects</h1>
       </div>
     );
   }
-  else if (projects === 'void') {
-   return(
-     <div>
-       <h1>Nothing</h1>
-     </div>
-   );
-  }
-  else if (projects === 'error') {
+  else if (loading === true) {
     return(
       <div>
-        <h1>Error</h1>
+        <Loader />
       </div>
     );
   }
   else {
     return (
       <div>
-        <Loader />
+        <h1>Error</h1>
       </div>
     );
   }

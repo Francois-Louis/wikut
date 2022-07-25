@@ -1,17 +1,16 @@
-import { FETCH_PROJECTS_TO_DISPLAY, saveFetchedProjects } from "../actions/projectsActions";
+import { FETCH_PROJECTS_TO_DISPLAY, saveFetchedProjects, switchLoading } from "../actions/projectsActions";
+import axios from "axios";
 
 const projectsMiddleware = (store) => next => action => {
   switch (action.type) {
     case FETCH_PROJECTS_TO_DISPLAY:
-      fetch ("http://localhost:8000/api/projects?page=1")
-        .then(response => {
-          response.data.length === 0
-            ? store.dispatch(saveFetchedProjects('void'))
-            : store.dispatch(saveFetchedProjects(response.data));
+      store.dispatch(switchLoading(true),
+       axios.get("http://localhost:8000/api/projects")
+         .then(response => {
+            store.dispatch(saveFetchedProjects(response.data));
         }).catch(error => {
-        console.log(error);
-        store.dispatch(saveFetchedProjects('error'));
-      });
+            console.log(error);
+      }).finally(() => {  store.dispatch(switchLoading(false)); } ));
       break;
     default:
   }
