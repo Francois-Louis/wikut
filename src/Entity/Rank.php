@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RankRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +11,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass=RankRepository::class)
  * @Gedmo\Uploadable(path="./img/avatar", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  */
