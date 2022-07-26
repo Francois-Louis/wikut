@@ -7,7 +7,7 @@
                 <form method="post" class="row g-3">
                     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(erros.messageData, 'security')}}</div>
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security')}}</div>
                     {% endif %}
                     <div class="col-12">
                         <label for="inputEmail">Email</label>

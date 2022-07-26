@@ -41,19 +41,25 @@ class Comment
     private $project;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Comment::class, inversedBy="answers")
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="target_comment")
      */
-    private $topic;
+    private $denounced;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Comment::class, mappedBy="topic")
+     * @ORM\ManyToOne(targetEntity=Comment::class, inversedBy="topic")
      */
-    private $answers;
+    private $answer;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="answer")
+     */
+    private $topic;
 
     public function __construct()
     {
         $this->topic = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->denounced = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +104,48 @@ class Comment
     }
 
     /**
+     * @return Collection<int, Report>
+     */
+    public function getDenounced(): Collection
+    {
+        return $this->denounced;
+    }
+
+    public function addDenounced(Report $denounced): self
+    {
+        if (!$this->denounced->contains($denounced)) {
+            $this->denounced[] = $denounced;
+            $denounced->setTargetComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDenounced(Report $denounced): self
+    {
+        if ($this->denounced->removeElement($denounced)) {
+            // set the owning side to null (unless already changed)
+            if ($denounced->getTargetComment() === $this) {
+                $denounced->setTargetComment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAnswer(): ?self
+    {
+        return $this->answer;
+    }
+
+    public function setAnswer(?self $answer): self
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
      * @return Collection<int, self>
      */
     public function getTopic(): Collection
@@ -109,6 +157,7 @@ class Comment
     {
         if (!$this->topic->contains($topic)) {
             $this->topic[] = $topic;
+            $topic->setAnswer($this);
         }
 
         return $this;
@@ -116,33 +165,11 @@ class Comment
 
     public function removeTopic(self $topic): self
     {
-        $this->topic->removeElement($topic);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getAnswers(): Collection
-    {
-        return $this->answers;
-    }
-
-    public function addAnswer(self $answer): self
-    {
-        if (!$this->answers->contains($answer)) {
-            $this->answers[] = $answer;
-            $answer->addTopic($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnswer(self $answer): self
-    {
-        if ($this->answers->removeElement($answer)) {
-            $answer->removeTopic($this);
+        if ($this->topic->removeElement($topic)) {
+            // set the owning side to null (unless already changed)
+            if ($topic->getAnswer() === $this) {
+                $topic->setAnswer(null);
+            }
         }
 
         return $this;

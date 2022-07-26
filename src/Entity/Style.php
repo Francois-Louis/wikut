@@ -36,18 +36,19 @@ class Style
     private $slug;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Project::class, inversedBy="styles")
      */
     private $projects;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="prefer_style")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -79,18 +80,6 @@ class Style
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Project>
      */
@@ -111,6 +100,33 @@ class Style
     public function removeProject(Project $project): self
     {
         $this->projects->removeElement($project);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addPreferStyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removePreferStyle($this);
+        }
 
         return $this;
     }

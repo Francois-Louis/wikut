@@ -93,6 +93,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="followers")
+     * @ORM\JoinTable(
+     *     name="follower_followed",
+     *     joinColumns={
+     *          @ORM\JoinColumn(name="follower_id", referencedColumnName="id")
+     *     },
+     *     inverseJoinColumns={
+     *          @ORM\JoinColumn(name="followed_id", referencedColumnName="id")
+     *     }
+     * )
      */
     private $following;
 
@@ -134,9 +143,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="users")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="country_code", referencedColumnName="code", nullable=false)
      */
     private $country;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="informer")
+     */
+    private $reports;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="target_user")
+     */
+    private $denounced;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="blocked")
+     * @ORM\JoinTable(
+     *     name="blocker_blocked",
+     *     joinColumns={
+     *          @ORM\JoinColumn(name="blocker_id", referencedColumnName="id")},
+     *     inverseJoinColumns={
+     *          @ORM\JoinColumn(name="blocked_id", referencedColumnName="id")
+     *  }
+     * )
+     */
+    private $block;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="block")
+     */
+    private $blocked;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banned;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Blade::class, inversedBy="users")
+     */
+    private $prefer_blade;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Handle::class, inversedBy="users")
+     */
+    private $prefer_handle;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Style::class, inversedBy="users")
+     */
+    private $prefer_style;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="users")
+     */
+    private $prefer_category;
 
     public function __construct()
     {
@@ -145,6 +207,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->projects = new ArrayCollection();
         $this->votes = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->reports = new ArrayCollection();
+        $this->denounced = new ArrayCollection();
+        $this->block = new ArrayCollection();
+        $this->blocked = new ArrayCollection();
+        $this->prefer_blade = new ArrayCollection();
+        $this->prefer_handle = new ArrayCollection();
+        $this->prefer_style = new ArrayCollection();
+        $this->prefer_category = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -540,6 +610,225 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Report>
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setInformer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getInformer() === $this) {
+                $report->setInformer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Report>
+     */
+    public function getDenounced(): Collection
+    {
+        return $this->denounced;
+    }
+
+    public function addDenounced(Report $denounced): self
+    {
+        if (!$this->denounced->contains($denounced)) {
+            $this->denounced[] = $denounced;
+            $denounced->setTargetUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDenounced(Report $denounced): self
+    {
+        if ($this->denounced->removeElement($denounced)) {
+            // set the owning side to null (unless already changed)
+            if ($denounced->getTargetUser() === $this) {
+                $denounced->setTargetUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getBlock(): Collection
+    {
+        return $this->block;
+    }
+
+    public function addBlock(self $block): self
+    {
+        if (!$this->block->contains($block)) {
+            $this->block[] = $block;
+        }
+
+        return $this;
+    }
+
+    public function removeBlock(self $block): self
+    {
+        $this->block->removeElement($block);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getBlocked(): Collection
+    {
+        return $this->blocked;
+    }
+
+    public function addBlocked(self $blocked): self
+    {
+        if (!$this->blocked->contains($blocked)) {
+            $this->blocked[] = $blocked;
+            $blocked->addBlock($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlocked(self $blocked): self
+    {
+        if ($this->blocked->removeElement($blocked)) {
+            $blocked->removeBlock($this);
+        }
+
+        return $this;
+    }
+
+    public function isBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Blade>
+     */
+    public function getPreferBlade(): Collection
+    {
+        return $this->prefer_blade;
+    }
+
+    public function addPreferBlade(Blade $preferBlade): self
+    {
+        if (!$this->prefer_blade->contains($preferBlade)) {
+            $this->prefer_blade[] = $preferBlade;
+        }
+
+        return $this;
+    }
+
+    public function removePreferBlade(Blade $preferBlade): self
+    {
+        $this->prefer_blade->removeElement($preferBlade);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Handle>
+     */
+    public function getPreferHandle(): Collection
+    {
+        return $this->prefer_handle;
+    }
+
+    public function addPreferHandle(Handle $preferHandle): self
+    {
+        if (!$this->prefer_handle->contains($preferHandle)) {
+            $this->prefer_handle[] = $preferHandle;
+        }
+
+        return $this;
+    }
+
+    public function removePreferHandle(Handle $preferHandle): self
+    {
+        $this->prefer_handle->removeElement($preferHandle);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Style>
+     */
+    public function getPreferStyle(): Collection
+    {
+        return $this->prefer_style;
+    }
+
+    public function addPreferStyle(Style $preferStyle): self
+    {
+        if (!$this->prefer_style->contains($preferStyle)) {
+            $this->prefer_style[] = $preferStyle;
+        }
+
+        return $this;
+    }
+
+    public function removePreferStyle(Style $preferStyle): self
+    {
+        $this->prefer_style->removeElement($preferStyle);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getPreferCategory(): Collection
+    {
+        return $this->prefer_category;
+    }
+
+    public function addPreferCategory(Category $preferCategory): self
+    {
+        if (!$this->prefer_category->contains($preferCategory)) {
+            $this->prefer_category[] = $preferCategory;
+        }
+
+        return $this;
+    }
+
+    public function removePreferCategory(Category $preferCategory): self
+    {
+        $this->prefer_category->removeElement($preferCategory);
 
         return $this;
     }

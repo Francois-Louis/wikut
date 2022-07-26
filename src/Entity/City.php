@@ -45,7 +45,7 @@ class City
 
     /**
      * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="cities")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="country_code", referencedColumnName="code", nullable=false)
      */
     private $country;
 

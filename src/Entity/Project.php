@@ -107,6 +107,11 @@ class Project
      */
     private $styles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="target_project")
+     */
+    private $denounced;
+
     public function __construct()
     {
         $this->votes = new ArrayCollection();
@@ -114,6 +119,7 @@ class Project
         $this->pictures = new ArrayCollection();
         $this->handles = new ArrayCollection();
         $this->styles = new ArrayCollection();
+        $this->denounced = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -361,6 +367,36 @@ class Project
     {
         if ($this->styles->removeElement($style)) {
             $style->removeProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Report>
+     */
+    public function getDenounced(): Collection
+    {
+        return $this->denounced;
+    }
+
+    public function addDenounced(Report $denounced): self
+    {
+        if (!$this->denounced->contains($denounced)) {
+            $this->denounced[] = $denounced;
+            $denounced->setTargetProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDenounced(Report $denounced): self
+    {
+        if ($this->denounced->removeElement($denounced)) {
+            // set the owning side to null (unless already changed)
+            if ($denounced->getTargetProject() === $this) {
+                $denounced->setTargetProject(null);
+            }
         }
 
         return $this;

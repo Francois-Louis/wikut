@@ -36,18 +36,19 @@ class Blade
     private $slug;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    /**
      * @ORM\OneToMany(targetEntity=Project::class, mappedBy="blade")
      */
     private $Projects;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="prefer_blade")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->Projects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -84,18 +85,6 @@ class Blade
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Project>
      */
@@ -121,6 +110,33 @@ class Blade
             if ($project->getBlade() === $this) {
                 $project->setBlade(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addPreferBlade($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removePreferBlade($this);
         }
 
         return $this;
