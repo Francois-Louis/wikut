@@ -60,6 +60,22 @@ h5 {
   display: none;
 }
 
+.not-user {
+  width: 90vw;
+  background-color: $danger3;
+  border: $danger9 1px solid;
+  border-radius: 5px;
+  padding: 6px 12px 6px 12px;
+  text-align: center;
+  font-size: 0.8em;
+  margin-bottom: 12px;
+
+  &__text {
+    color: $danger12;
+    font-weight: 700;
+  }
+}
+
 @media (min-width: 768px) {
 
 }

@@ -38,9 +38,9 @@
 
             </li>
             {% else %}
-            <li class="navbar__item mob">
-                <a href="{{ path('app_login') }}">Connexion</a>
-            </li>
+            <button type="button" class="navbar__item login-btn mob">
+                <a class="login-btn--color" href="{{ path('app_login') }}">Connexion</a>
+            </button>
             {% endif %}
         </ul>
     </nav>

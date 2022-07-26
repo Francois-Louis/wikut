@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=PictureRepository::class)
@@ -23,11 +24,13 @@ class Picture
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("api_feed")
      */
     private $path;
 
     /**
      * @ORM\Column(type="smallint", options={"default": 0})
+     * @Groups("api_feed")
      */
     private $place;
 

@@ -3,6 +3,19 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {% else %}
+        <div class="not-user">
+            <p class="not-user__text">Pour ajouter, noter ou commenter un couteau, vous devez être authentifié.</p>
+        </div>
+    {% endif %}
+    <nav class="nav-project mob">
+        <h3></h3>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
     {% block javascripts %}
         {{ encore_entry_script_tags('feed') }}
     {% endblock %}

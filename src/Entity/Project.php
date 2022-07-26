@@ -27,71 +27,83 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("api_projects_list")
+     * @Groups("api_feed")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Slug(fields={"name", "id"})
+     * @Groups("api_feed")
      */
     private $slug;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups("api_feed")
      */
     private $description;
 
     /**
      * @ORM\Column(type="smallint", options={"default": 0}, nullable=true)
+     * @Groups("api_feed")
      */
     private $score;
 
     /**
      * @ORM\Column(type="integer", options={"default": 0}, nullable=true)
+     * @Groups("api_feed")
      */
     private $views;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_feed")
      */
     private $user;
 
     /**
      * @ORM\OneToMany(targetEntity=Vote::class, mappedBy="project")
+     * @Groups("api_feed")
      */
     private $votes;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="project")
+     * @Groups("api_feed")
      */
     private $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="projects")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_feed")
      */
     private $category;
 
     /**
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="project")
+     * @Groups("api_feed")
      */
     private $pictures;
 
     /**
      * @ORM\ManyToOne(targetEntity=Blade::class, inversedBy="Projects")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("api_feed")
      */
     private $blade;
 
     /**
      * @ORM\ManyToMany(targetEntity=Handle::class, mappedBy="projects")
+     * @Groups("api_feed")
      */
     private $handles;
 
     /**
      * @ORM\ManyToMany(targetEntity=Style::class, mappedBy="projects")
+     * @Groups("api_feed")
      */
     private $styles;
 

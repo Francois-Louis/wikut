@@ -1,7 +1,7 @@
 .navbar {
   height: 50px;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   display: flex;
   padding: 12px ;
 
@@ -20,4 +20,18 @@
       margin-left: auto;
       align-self: center;
     }
+}
+
+.login-btn {
+  background-color: $main4;
+  border: $main7 1px solid;
+  border-radius: 5px;
+  padding: 6px 12px 6px 12px;
+
+  &--color {
+    color: $info12;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+  }
 }
