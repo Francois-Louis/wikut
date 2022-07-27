@@ -1,0 +1,34 @@
+<nav class="navbar mob">
+    <div class="dropdown">
+    <button type="button" id="wikutBtn" class="navbar__infos">
+        <img id="wikutLogoMob" src="{{ asset('assets/img/logo/logo_wikut.png')  }}" alt="Logo de Wikut" />
+        Wikut
+    </button>
+    <ul id="wikutDrop" class="wikutDrop-content">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Connexion</a></li>
+        <li><a href="#">Inscription</a></li>
+    </ul>
+    </div>
+    <div class="dropdown">
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <button type="button" class="navbar__avatar">
+            <img id="avatarBtn" src="assets/img/avatar/{{ app.user.avatar }}" alt="Avatar de l'utilisateur"/>
+        </button>
+        <ul id="avatarDrop" class="avatarDrop-content">
+            {% if is_granted('ROLE_MODO') %}
+                <li><a href="{{ path('app_admin') }}"><i class="fa-solid fa-dashboard footer__link--color"></i>Admin</a></li>
+            {% endif %}
+            <li><a href="#"><i class="fa-solid fa-user footer__link--color"></i></a></li>
+            <li><a href="{{ path('app_logout') }}"><i class="fa-solid fa-sign-out footer__link--color"></i>Déconnexion</a></li>
+        </ul>
+    {% else %}
+        <button id="loginBtn" type="button" class="navbar__login">
+            <a href="{{ path('app_login') }}">Connexion</a>
+        </button>
+    {% endif %}
+    </div>
+</nav>
+

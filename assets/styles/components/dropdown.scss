@@ -1,0 +1,61 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.wikutDrop-content {
+  display: none;
+  position: absolute;
+  background-color: $main2;
+  min-width: 107px;
+  border-radius: 2px;
+  box-shadow: 0px 8px 16px 0px $info9;
+  z-index: 1;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* Links inside the dropdown */
+.wikutDrop-content a {
+  color: $info12;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.wikutDrop-content a:hover {background-color: $main8;}
+
+/* Dropdown Content (Hidden by Default) */
+.avatarDrop-content {
+  display: none;
+  position: absolute;
+  background-color: $main2;
+  min-width: 150px;
+  border-radius: 2px;
+  box-shadow: 0px 8px 16px 0px $info9;
+  z-index: 1;
+  margin-top: 6px;
+  right: 0;
+  text-align: center;
+}
+
+/* Links inside the dropdown */
+.avatarDrop-content a {
+  color: $info12;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Links inside the dropdown */
+.avatarDrop-content i {
+  padding-right: 6px;
+}
+
+/* Change color of dropdown links on hover */
+.avatarDrop-content a:hover {background-color: $main8;}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

@@ -1,0 +1,17 @@
+#loginBtn {
+  height: 36px;
+  padding: 6px 12px 6px 12px;
+  border: 1px solid $main7;
+  border-radius: 5px;
+  background-color: $main9;
+  cursor: pointer;
+
+  & a {
+    color: $info12;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+  }
+
+}

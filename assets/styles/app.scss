@@ -2,6 +2,10 @@
 @import "utils/fonts";
 @import "utils/colors";
 @import "layouts/navbar";
+@import "components/avatarBtn";
+@import "components/loginBtn";
+@import "components/wikutBtn";
+@import "components/dropdown";
 @import "layouts/footer";
 @import "components/loader";
 @import "components/projects";
@@ -11,9 +15,6 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 100vh;
   background-color: $info2;
   font-size: 16px;

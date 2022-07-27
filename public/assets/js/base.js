@@ -1,6 +1,6 @@
 const base = {
   init: function() {
-    dropdownAvatar.init();
+    dropdowns.init();
   },
 };
 

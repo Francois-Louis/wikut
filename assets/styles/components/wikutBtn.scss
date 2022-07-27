@@ -1,0 +1,19 @@
+#wikutBtn {
+  height: 36px;
+  padding: 0 6px 0 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $info9;
+  font-size: 1.5em;
+  font-weight: 700;
+  font-family: 'Ubuntu', sans-serif;
+  font-style: oblique;
+  display: flex;
+  align-items: center;
+
+  & img {
+    height: 36px;
+    width: 36px;
+  }
+}

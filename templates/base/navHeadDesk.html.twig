@@ -1,0 +1,36 @@
+<img class="navbar__logo desk" src="{{ asset('assets/img/logo/logo_wikut.png')  }}" alt="Logo de Wikut" />
+<h4 class="navbar__brand desk">Wikut</h4>
+<nav class="navbar__nav desk">
+    <ul class="navbar__links desk">
+        <li class="navbar__item desk">
+            New
+        </li>
+        <li class="navbar__item desk">
+            Trending
+        </li>
+        <li class="navbar__item desk">
+            Top
+        </li>
+        <li class="navbar__item desk">
+            Makers
+        </li>
+        <li class="navbar__item desk">
+            Place
+        </li>
+        <li class="navbar__item desk">
+            Encyclopédie
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="navbar__item desk">
+                <a href="{{ path('app_admin') }}">Admin</a>
+            </li>
+        {% endif %}
+        <li class="navbar__item desk">
+            {%  if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
