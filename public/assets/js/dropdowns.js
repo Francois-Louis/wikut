@@ -14,14 +14,17 @@ const dropdowns = {
       case avatarbtn:
         console.log('avatarbtn');
         avatarContent.classList.toggle('show');
+        wikutContent.classList.remove('show');
         break;
       case wikutBtn:
         console.log('wikutBtn');
         wikutContent.classList.toggle('show');
+        avatarContent.classList.remove('show');
         break;
       case wikutLogoMob:
         console.log('wikutLogoMob');
         wikutContent.classList.toggle('show');
+        avatarContent.classList.remove('show');
         break;
       default:
         avatarContent.classList.remove('show');

@@ -19,6 +19,8 @@ class ApiController extends AbstractController
         ]);
     }
 
+    // can use isgranted auth_remembered
+
     /**
      * @Route("/api/projects", name="app_api_projects")
      */

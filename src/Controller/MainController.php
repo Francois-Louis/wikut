@@ -15,10 +15,30 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(): Response
+    public function home(): Response
     {
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('pages/home.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/my-account", name="app_my_account")
+     */
+    public function myAccount(): Response
+    {
+        return $this->render('pages/myAccount.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/create-project", name="app_create_project")
+     */
+    public function createProject(): Response
+    {
+        return $this->render('pages/createProject.html.twig', [
+            'controller_name' => 'MainController',
         ]);
     }
 }

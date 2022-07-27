@@ -12,11 +12,32 @@
     justify-content: space-around;
   }
 
-  &__link {
-    font-size: 24px;
+  &__btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    height: 24px;
+    width: 24px;
 
-    &--color {
-      color: $info12;
+    & i {
+        font-size: 24px;
+        color: $info12;
     }
+  }
+}
+
+#addProjectBtn {
+  background-color: $info9;
+  border-radius: 50%;
+  padding: 5.5px 7.75px 5.5px 7.75px;
+  height: 48px;
+  width: 48px;
+  position: relative;
+  bottom: 24px;
+  border: $main7 1px solid;
+
+  & i {
+      font-size: 36px;
+      color: $main9;
   }
 }

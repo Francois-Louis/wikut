@@ -1,8 +1,12 @@
 <nav class="navfoot mob">
     <ul class="navfoot__links mob">
-        <li class="navfoot__link mob"><a href="about.php"><i class="fa fa-house-chimney footer__link--color"></i></a></li>
-        <li class="navfoot__link mob"><a href="contact.php"><i class="fa-solid fa-magnifying-glass footer__link--color"></i></a></li>
-        <li class="navfoot__link mob"><a href="login.php"><i class="fa-solid fa-globe footer__link--color"></i></a></li>
-        <li class="navfoot__link mob"><a href="login.php"><i class="fa-solid fa-book footer__link--color"></i></a></li>
+        <li class="navfoot__link mob"><button class="navfoot__btn" type="button"><a href="about.php"><i class="fa fa-house-chimney navfoot__link--color"></i></a></button></li>
+        <li class="navfoot__link mob"><button class="navfoot__btn" type="button"><a href="contact.php"><i class="fa-solid fa-magnifying-glass navfoot__link--color"></i></a></button></li>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <li  id="addProjectBtn" class="navfoot__link mob"><button class="navfoot__btn" type="button"><a href="contact.php"><i class="fa-solid fa-plus navfoot__link--color"></i></a></button></li>
+        {% else %}
+        {% endif %}
+        <li class="navfoot__link mob"><button class="navfoot__btn" type="button"><a href="login.php"><i class="fa-solid fa-globe navfoot__link--color"></i></a></button></li>
+        <li class="navfoot__link mob"><button class="navfoot__btn" type="button"><a href="login.php"><i class="fa-solid fa-book navfoot__link--color"></i></a></button></li>
     </ul>
 </nav>
