@@ -31,10 +31,10 @@ class UserCrudController extends AbstractCrudController
             ->formatValue(static function($value, ?User $user) {
                 return $user->getAvatarUrl();
             });
-        /*yield ImageField::new('avatar')
+        yield ImageField::new('avatar')
             ->setBasePath('/img/avatar/')
             ->setUploadDir('public//img/avatar/')
-            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');*/
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield DateField::new('createdAt')
             ->onlyOnDetail();
         $roles = [

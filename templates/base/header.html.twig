@@ -1,5 +1,5 @@
 <header class="navbar">
-    <img class="navbar__logo" src="{{ asset('img/logo/logo_wikut.png')  }}" alt="Logo de Wikut" />
+    <img class="navbar__logo" src="{{ asset('assets/img/logo/logo_wikut.png')  }}" alt="Logo de Wikut" />
     <h4 class="navbar__brand">Wikut</h4>
     <nav class="navbar__nav">
         <ul class="navbar__links">
@@ -34,9 +34,16 @@
                 {% endif %}
             </li>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <li class="navbar__item mob">
-
-            </li>
+            <button  type="button" class="navbar__item dropbtn mob">
+                <img id="avatarBtn"  src="assets/img/avatar/{{ app.user.avatar }}" alt="Avatar de l'utilisateur"/>
+            </button>
+                <div id="avatarDrop" class="dropdown-content mob hide">
+                {% if is_granted('ROLE_MODO') %}
+                    <a href="{{ path('app_admin') }}">Admin</a>
+                {% endif %}
+                    <a href="#">Link 2</a>
+                    <a href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
             {% else %}
             <button type="button" class="navbar__item login-btn mob">
                 <a class="login-btn--color" href="{{ path('app_login') }}">Connexion</a>

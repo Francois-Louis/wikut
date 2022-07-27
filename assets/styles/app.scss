@@ -62,7 +62,6 @@ h5 {
 
 .not-user {
   width: 90vw;
-  background-color: $danger3;
   border: $danger9 1px solid;
   border-radius: 5px;
   padding: 6px 12px 6px 12px;
@@ -71,7 +70,7 @@ h5 {
   margin-bottom: 12px;
 
   &__text {
-    color: $danger12;
+    color: $danger9;
     font-weight: 700;
   }
 }

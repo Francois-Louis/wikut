@@ -9,16 +9,18 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-
-    <link href="{{ absolute_url('fontawesome/css/all.css') }}" rel="stylesheet">
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+    <link href="{{ absolute_url('assets/fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
 {% include 'base/header.html.twig' %}
 {% block body %}{% endblock %}
 {% include 'base/footer.html.twig' %}
+<script src="{{ asset('assets/js/base.js') }}"></script>
+<script src="{{ asset('assets/js/dropdownAvatar.js') }}"></script>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {{ encore_entry_script_tags('feed') }}
+{% endblock %}
+
 </body>
 </html>
