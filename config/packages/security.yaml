@@ -32,6 +32,8 @@ security:
                 password_parameter: password
                 enable_csrf: true
             logout: true
+            login_throttling:
+
             remember_me:
                 secret: '%kernel.secret%'
                 # force le stockage de la session en cookie

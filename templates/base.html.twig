@@ -13,6 +13,12 @@
 </head>
 <body>
 {% include 'base/header.html.twig' %}
+{% for flash in app.flashes('success') %}
+    <div>{{ flash }}</div>
+{% endfor %}
+{% for flash in app.flashes('verify_email_error') %}
+    <div>{{ flash }}</div>
+{% endfor %}
 {% block body %}{% endblock %}
 {% include 'base/footer.html.twig' %}
 <script src="{{ asset('assets/js/base.js') }}"></script>
