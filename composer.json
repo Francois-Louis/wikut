@@ -50,7 +50,8 @@
         "symfonycasts/reset-password-bundle": "^1.14",
         "symfonycasts/verify-email-bundle": "^1.11",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "vich/uploader-bundle": "^1.20"
     },
     "config": {
         "allow-plugins": {
