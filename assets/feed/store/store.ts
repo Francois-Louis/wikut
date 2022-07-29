@@ -4,6 +4,12 @@ import reducer from '../reducers/reducers';
 import projectsMiddleware from '../middlewares/projectsMiddleware';
 import userMiddleware from "../middlewares/userMiddleware";
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
