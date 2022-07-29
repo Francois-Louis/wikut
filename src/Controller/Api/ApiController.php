@@ -22,13 +22,13 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/projects", name="app_api_projects")
+     * @Route("/api/projects", name="app_api_projects", methods={"GET"})
      */
-    public function projectsFeed(ProjectRepository $projectRepository): Response
+    public function projectsFeed(Request $request, ProjectRepository $projectRepository): Response
     {;
+        $headerContent = $request->headers->get('page');
 
-        $projects = $projectRepository->findAll();
-
+        $projects = $projectRepository->findBy([], ['createdAt' => 'DESC'], 1, $headerContent);
 
         return $this->json($projects, Response::HTTP_OK,[], ['groups' => 'api_feed']);
     }

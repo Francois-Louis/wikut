@@ -19,9 +19,7 @@ const  ProjectsList = () => {
   if (projects.length > 0) {
     return (
       <div>
-        {projects.map((project, index) => (
-          <div key={index} className="project">{project.name}</div>
-        ))}
+        {projects.map((project) => { return <div key={project.id}>{project.name}</div>; })}
       </div>
     );
   }

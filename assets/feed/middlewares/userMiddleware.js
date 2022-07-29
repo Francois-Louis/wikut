@@ -10,7 +10,6 @@ const userMiddleware = (store) => next => action => {
     case FETCH_USER:
         axios.get("http://localhost:8000/api/user")
           .then(response => {
-            console.log(response.data)
             store.dispatch(saveFetchedUser(response.data));
           }).catch(error => {
           console.log(error);
