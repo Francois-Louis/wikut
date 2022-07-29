@@ -4,14 +4,14 @@
 
 {% block body %}
     <main>
-        <aside>
-            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            {% else %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% else %}
+            <aside>
                 <div class="not-user">
                     <p class="not-user__text">Pour ajouter, noter ou commenter un couteau, vous devez être authentifié.</p>
                 </div>
-            {% endif %}
-        </aside>
+            </aside>
+        {% endif %}
     <nav class="nav-project mob">
         <h3></h3>
         <ul>

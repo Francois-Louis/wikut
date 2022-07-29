@@ -70,3 +70,23 @@ INSERT INTO status(id,name,description, `created_at`, `updated_at`) VALUES (2,'H
 INSERT INTO status(id,name,description, `created_at`, `updated_at`) VALUES (3,'Artisan','Fabricant professionnel de couteaux,produits majoritairement par procédés et méthodes artisanales (découpe laser des pièces autorisée), travaillant principalement seul.',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 INSERT INTO status(id,name,description, `created_at`, `updated_at`) VALUES (4,'Semi-industriel','Fabricant professionnel de couteaux, en grande quantité et produits majoritairement par procédés et méthodes artisanales (pas de travail à la chaîne), accueillant des salariés.',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 INSERT INTO status(id,name,description, `created_at`, `updated_at`) VALUES (5,'Industriel','Fabricant professionnel de couteaux, en grande quantité et produits majoritairement par procédés et méthodes industrielles, accueillant des salariés.',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+# project
+
+INSERT INTO `project`(`id`, `user_id`, `category_id`, `blade_id`, `name`, `slug`, `description`, `score`, `views`, `created_at`, `updated_at`) VALUES (1,1,4,1,'Kikoup','kikoup','Zic Zac',50,0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `project`(`id`, `user_id`, `category_id`, `blade_id`, `name`, `slug`, `description`, `score`, `views`, `created_at`, `updated_at`) VALUES (2,3,4,3,'Laguiole','laguiole','Un vrai laguiole de thiers',0,0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `project`(`id`, `user_id`, `category_id`, `blade_id`, `name`, `slug`, `description`, `score`, `views`, `created_at`, `updated_at`) VALUES (3,3,4,4,'Thiers','thiers','le Thiernois de Thiers',0,0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+# votes
+INSERT INTO `vote`(`id`, `user_id`, `project_id`, `rate`, `created_at`, `updated_at`) VALUES (1,2,1,50,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+# Pictures
+INSERT INTO `picture`(`id`, `project_id`, `path`, `place`, `created_at`, `updated_at`) VALUES (1,1,'IMG_0224 (2).jpg',0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `picture`(`id`, `project_id`, `path`, `place`, `created_at`, `updated_at`) VALUES (2,1,'IMG_0225 (2).jpg',1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `picture`(`id`, `project_id`, `path`, `place`, `created_at`, `updated_at`) VALUES (3,2,'Laguiole-Honoré-Durand-image-principale.jpg',0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `picture`(`id`, `project_id`, `path`, `place`, `created_at`, `updated_at`) VALUES (4,3,'COUVERTURE-scaled-700x700.jpg',0,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+
+# Comments
+INSERT INTO `comment`(`id`, `user_id`, `project_id`, `answer_id`, `content`, `created_at`, `updated_at`) VALUES (1,2,1,2,'Mais c\'est de la merde !',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `comment`(`id`, `user_id`, `project_id`, `answer_id`, `content`, `created_at`, `updated_at`) VALUES (2,1,1,3,'Enculé va !',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+INSERT INTO `comment`(`id`, `user_id`, `project_id`, `answer_id`, `content`, `created_at`, `updated_at`) VALUES (3,2,1,NULL,'Du calme bijou ^^ !',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

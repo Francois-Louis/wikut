@@ -11,10 +11,11 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @Gedmo\Uploadable(path="./img/avatar", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
+ * @Gedmo\Uploadable(path="./assets/img/avatar", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -26,6 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("api_user")
+     * @Groups("api_feed")
      */
     private $id;
 
@@ -36,6 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="json")
+     * @Groups("api_user")
      */
     private $roles = [];
 
@@ -48,18 +52,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\UploadableFileName
+     * @Groups("api_feed")
      */
     private $pseudo;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Slug(fields={"pseudo", "company"})
+     * @Groups("api_feed")
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Gedmo\UploadableFilePath
+     * @Groups("api_feed")
      */
     private $avatar;
 
@@ -90,6 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("api_feed")
      */
     private $company;
 

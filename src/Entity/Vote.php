@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\VoteRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=VoteRepository::class)
@@ -18,11 +19,13 @@ class Vote
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("api_feed")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="smallint", options={"default": 0})
+     * @ORM\Column(type="smallint", options={"default": 0})*
+     * @Groups("api_feed")
      */
     private $rate;
 

@@ -32,8 +32,8 @@ class UserCrudController extends AbstractCrudController
                 return $user->getAvatarUrl();
             });
         yield ImageField::new('avatar')
-            ->setBasePath('/img/avatar/')
-            ->setUploadDir('public//img/avatar/')
+            ->setBasePath('/assets/img/avatar/')
+            ->setUploadDir('public/assets/img/avatar/')
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield DateField::new('createdAt')
             ->onlyOnDetail();
