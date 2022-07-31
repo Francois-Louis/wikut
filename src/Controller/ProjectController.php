@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
+use App\Form\ProjectFormType;
+use App\Repository\ProjectRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,13 +17,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/create", name="project_create")
+     * @Route("/create", name="project_create", methods={"GET", "POST"})
      * @IsGranted("ROLE_USER")
      */
-    public function createProject(): Response
+    public function createProject(Request $request, ProjectRepository $projectRepository): Response
     {
-        return $this->render('project/createProject.html.twig', [
-            'controller_name' => 'MainController',
+        $project = new Project();
+        $form = $this->createForm(ProjectFormType::class, $project);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $projectRepository->add($project);
+
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+            //return $this->redirectToRoute('app_animal_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('project/createProject.html.twig', [
+            'project' => $project,
+            'form' => $form,
         ]);
     }
 

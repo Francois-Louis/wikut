@@ -18,7 +18,6 @@ class UserController extends AbstractController
     {
         $slug = $request->attributes->get('slug');
         $user = $userRepo->findOneBy(['slug' => $slug]);
-        dd($user);
 
         return $this->render('user/profile.html.twig', [
             $user,
@@ -32,7 +31,6 @@ class UserController extends AbstractController
     public function myAccount(string $slug): Response
     {
         $user = $this->getUser();
-        dd($user);
 
         return $this->render('user/myAccount.html.twig', [
             $user,
@@ -65,6 +63,6 @@ class UserController extends AbstractController
 
 
 
-        return $this->render('user/unsubscribe.html.twig', []);
+        return $this->redirectToRoute('unsubscribe', [], Response::HTTP_SEE_OTHER);
     }
 }

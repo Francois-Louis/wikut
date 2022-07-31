@@ -73,7 +73,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/search", name="app_api_projects", methods={"GET"})
+     * @Route("/search", name="app_api_search", methods={"GET"})
      */
     public function search(Request $request, MainRepository $mainRepository): Response
     {;
