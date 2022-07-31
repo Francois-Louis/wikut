@@ -24,12 +24,6 @@ class Vote
     private $id;
 
     /**
-     * @ORM\Column(type="smallint", options={"default": 0})*
-     * @Groups("api_feed")
-     */
-    private $rate;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="votes")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -41,21 +35,14 @@ class Vote
      */
     private $project;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Rate::class, inversedBy="votes")
+     */
+    private $rate;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRate(): ?int
-    {
-        return $this->rate;
-    }
-
-    public function setRate(int $rate): self
-    {
-        $this->rate = $rate;
-
-        return $this;
     }
 
     public function getUser(): ?User
@@ -78,6 +65,18 @@ class Vote
     public function setProject(?Project $project): self
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    public function getRate(): ?Rate
+    {
+        return $this->rate;
+    }
+
+    public function setRate(?Rate $rate): self
+    {
+        $this->rate = $rate;
 
         return $this;
     }

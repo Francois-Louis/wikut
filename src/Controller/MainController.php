@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/", name="home")
      */
     public function home(): Response
     {
@@ -25,39 +25,94 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/my-account", name="app_my_account")
+     * @Route("/trending", name="trending")
      */
-    public function myAccount(): Response
+    public function trending(): Response
     {
-        return $this->render('pages/myAccount.html.twig', [
+        return $this->render('pages/trend.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
 
     /**
-     * @Route("/create-project", name="app_create_project")
+     * @Route("/top", name="top")
      */
-    public function createProject(): Response
+    public function top(): Response
     {
-        return $this->render('pages/createProject.html.twig', [
+        return $this->render('pages/top.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
 
     /**
-     * @Route("/mail", name="mail")
+     * @Route("/about", name="about")
      */
-    public function index(MailerInterface $mailer): Response
+    public function about(): Response
     {
-        $email = (new Email())
-            ->from('hello@example.com')
-            ->to('you@example.com')
-            ->subject('Test de MailDev')
-            ->text('Ceci est un mail de test');
-        $mailer->send($email);
-
-        return $this->render('pages/home.html.twig', [
-            'controller_name' => 'MailController',
+        return $this->render('pages/about.html.twig', [
+            'controller_name' => 'MainController',
         ]);
     }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq(): Response
+    {
+        return $this->render('pages/faq.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact(): Response
+    {
+        return $this->render('pages/contact.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/terms", name="terms")
+     */
+    public function terms(): Response
+    {
+        return $this->render('pages/terms.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/privacy", name="privacy")
+     */
+    public function privacy(): Response
+    {
+        return $this->render('pages/privacy.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/legal", name="legal")
+     */
+    public function legal(): Response
+    {
+        return $this->render('pages/legal.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+    /**
+     * @Route("/map", name="map")
+     */
+    public function map(): Response
+    {
+        return $this->render('pages/map.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
+
+
 }

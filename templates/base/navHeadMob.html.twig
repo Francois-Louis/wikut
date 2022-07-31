@@ -5,11 +5,12 @@
         Wikut
     </button>
     <ul id="wikutDrop" class="wikutDrop-content">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">À propos</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Connexion</a></li>
-        <li><a href="#">Inscription</a></li>
+        <li><a href="{{ path('about') }}">À propos</a></li>
+        <li><a href="{{ path('faq') }}">FAQ</a></li>
+        <li><a href="{{ path('contact') }}">Contact</a></li>
+        <li><a href="{{ path('terms') }}">Conditions d'utilisation</a></li>
+        <li><a href="{{ path('privacy') }}">Politique de confidentialité</a></li>
+        <li><a href="{{ path('legal') }}">Mentions légales</a></li>
     </ul>
     </div>
     <div class="dropdown">
@@ -19,14 +20,14 @@
         </button>
         <ul id="avatarDrop" class="avatarDrop-content">
             {% if is_granted('ROLE_MODO') %}
-                <li><a href="{{ path('app_admin') }}"><i class="fa-solid fa-dashboard footer__link--color"></i>Admin</a></li>
+                <li><a href="{{ path('admin') }}"><i class="fa-solid fa-dashboard footer__link--color"></i>Admin</a></li>
             {% endif %}
-            <li><a href="#"><i class="fa-solid fa-user footer__link--color"></i></a></li>
-            <li><a href="{{ path('app_logout') }}"><i class="fa-solid fa-sign-out footer__link--color"></i>Déconnexion</a></li>
+            <li><a href="{{ path('my_account', {slug: app.user.slug}) }}"><i class="fa-solid fa-user footer__link--color"></i>Mon compte</a></li>
+            <li><a href="{{ path('logout') }}"><i class="fa-solid fa-sign-out footer__link--color"></i>Déconnexion</a></li>
         </ul>
     {% else %}
         <button id="loginBtn" type="button" class="navbar__login">
-            <a href="{{ path('app_login') }}">Connexion</a>
+            <a href="{{ path('login') }}">Connexion</a>
         </button>
     {% endif %}
     </div>

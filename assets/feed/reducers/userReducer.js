@@ -7,7 +7,9 @@ const initialSate = {
   user: [],
 };
 
-const userReducer = (state = initialSate, action = {}) => {
+const userReducer = (state = initialSate, action = {
+
+}) => {
   switch (action.type) {
     case SAVE_FETCHED_USER:
       return {

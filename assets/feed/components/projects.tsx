@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import * as React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUser} from "../actions/userActions";
 import {switchLoading} from "../actions/projectsActions";
 import Loader from "./Loader/loader";
+import {useEffect} from "react";
 
 
 const  ProjectsList = () => {
@@ -13,7 +14,9 @@ const  ProjectsList = () => {
     dispatch(fetchUser());
   }, []);
 
+  // @ts-ignore
   const projects = useSelector((state) => state.Projects.projectstodisplay);
+  // @ts-ignore
   const loading = useSelector((state) => state.Projects.loading);
 
   if (projects.length > 0) {

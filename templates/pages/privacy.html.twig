@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wikut - Accueil{% endblock %}
+
+{% block body %}
+    <main>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% else %}
+            <aside>
+                <div class="not-user">
+                    <p class="not-user__text">Pour ajouter, noter ou commenter un couteau, vous devez être authentifié.</p>
+                </div>
+            </aside>
+        {% endif %}
+    <nav class="nav-project mob">
+        <h3></h3>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </nav>
+
+    <div id="feed"></div>
+    </main>
+{% endblock %}
+

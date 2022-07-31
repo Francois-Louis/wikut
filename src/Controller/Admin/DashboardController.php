@@ -28,7 +28,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class DashboardController extends AbstractDashboardController
 {
     /**
-     * @Route("/admin", name="app_admin")
+     * @Route("/admin", name="admin")
      * @IsGranted("ROLE_MODO")
      */
     public function index(): Response
