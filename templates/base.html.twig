@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-    <link href="{{ absolute_url('assets/fontawesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
 <body>
+
 {% include 'base/header.html.twig' %}
+
 {% for flash in app.flashes('success') %}
     <div>{{ flash }}</div>
 {% endfor %}
 {% for flash in app.flashes('verify_email_error') %}
     <div>{{ flash }}</div>
 {% endfor %}
+
 {% block body %}{% endblock %}
+
 {% include 'base/footer.html.twig' %}
-<script src="{{ asset('assets/js/base.js') }}"></script>
-<script src="{{ asset('assets/js/dropdowns.js') }}"></script>
+
 {% block javascripts %}
+    <script src="{{ asset('assets/js/base.js') }}"></script>
+    <script src="{{ asset('assets/js/dropdowns.js') }}"></script>
     {{ encore_entry_script_tags('app') }}
     {{ encore_entry_script_tags('feed') }}
 {% endblock %}

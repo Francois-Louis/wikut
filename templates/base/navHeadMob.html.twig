@@ -16,7 +16,7 @@
     <div class="dropdown">
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         <button type="button" class="navbar__avatar">
-            <img id="avatarBtn" src="assets/img/avatar/{{ app.user.avatar }}" alt="Avatar de l'utilisateur"/>
+            <img id="avatarBtn" src="../assets/img/avatar/{{ app.user.avatar }}" alt="Avatar de l'utilisateur"/>
         </button>
         <ul id="avatarDrop" class="avatarDrop-content">
             {% if is_granted('ROLE_MODO') %}

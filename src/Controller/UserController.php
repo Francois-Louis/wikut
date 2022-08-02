@@ -18,6 +18,12 @@ class UserController extends AbstractController
     {
         $slug = $request->attributes->get('slug');
         $user = $userRepo->findOneBy(['slug' => $slug]);
+        $status = $user->getStatus()->getId();
+
+        // Block access to non professional users for not registered users
+        if($status == 0 || $status == 1) {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+        }
 
         return $this->render('user/profile.html.twig', [
             $user,
@@ -30,10 +36,14 @@ class UserController extends AbstractController
      */
     public function myAccount(string $slug): Response
     {
-        $user = $this->getUser();
+        if($slug !== $this->getUser()->getSlug()) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas accès à cette page');
+        }
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
 
         return $this->render('user/myAccount.html.twig', [
-            $user,
+            'user' => $this->getUser(),
         ]);
     }
 

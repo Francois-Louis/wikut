@@ -26,7 +26,14 @@ class ProjectFormType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'required' => false,
-            ]);
+            ])
+            ->add('category', EntityType::class, [
+                'label' => 'Catégorie',
+                'class' => 'App\Entity\Category',
+                'choice_label' => 'name',
+                'placeholder' => 'Choisissez une catégorie',
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
